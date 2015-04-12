@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block archivos_estaticos %}
+	<link rel="stylesheet" href="/static/css/css_articulo.css">
+{% endblock %}
+{% block articulo %}<aside class="cont-news">
+	<article class= "panel panel-defaulty well">
+		<header>
+			<h1>{{articulo.titulo}}</h1>
+			<time >{{articulo.fecha_publicacion}}</time>
+		</header>
+		<div class="img-thumbnail cont_img" >
+			<img   data-src="holder.js/150x150" alt="150x150" src="{{MEDIA_ROOT}}/static/images/{{articulo.imagen}}">		
+			{% if articulo.pie_foto != None and articulo.pie_foto != '' %}
+				<div class="pie_foto">{{articulo.pie_foto}}</div>
+			{% endif %}	
+		</div>	
+		<div class="panel-body">{{articulo.codigo}}</div>
+		{% if articulo.documentos %}
+			<div >				
+				{% for documento in articulo.documentos %}
+					<a href="/documentos/{{documento.url}}">{{documento.nombre}} : <span>{{documento.fecha}}</span></a></br>
+				{% endfor %}	
+			</div>
+		{% endif %}	
+		<footer></footer>
+	</article>
+		{% if articulo.comentarios %}
+		<div class="cont_comentarios">
+			{%  if articulo.noAction %}
+				<form method="POST" action="." class="panel panel-primary">
+			{% else %}		
+				<form method="POST" action="{{articulo.id}}" class="panel panel-primary">
+			{% endif %}		
+				<div class="panel-heading"><h3 class="panel-title">Envie su Comentario</h3></div>
+				<table class="table">
+					<th>
+						<td></td>
+					</th>
+					<tr>
+						<td class="col_comentarios"><span>Nombre *</span><input class="form-control" type="text" aria-describedby="basic-addon1" name="nombre_usuario"/>
+						</td>
+						<td class="col_comentarios"><span>Correo Electrónico *</span><input class="form-control" type="text" aria-describedby="basic-addon1" name="email"/>
+						</td>
+						<td rowspan="2">
+							<ul>
+								<li class="first">
+								    <strong>Normas</strong>
+								</li>
+								<li>Los comentarios deben basarse en el respeto a los criterios. </li>
+								<li>No se admitirán ofensas, frases vulgares ni palabras obscenas.</li>
+								<li> Nos reservamos el derecho de no publicar los que incumplan con las normas de este sitio</li>
+							</ul>
+						</td>
+					</tr>
+					
+					<tr>
+						<td colspan="2"><span>Comentario *</span><textarea class="form-control" rows="3" name="comentario"></textarea>
+						</td>
+					</tr>
+					<tr><td colspan="2" style="text-align:right" class="centrar"><button class="btn btn-primary"  name="enviar" type="submit">Enviar</button></td></tr>
+				</table>
+				
+			</form>
+			<ul class= "list_comentarios">
+				{% for comentario in articulo.listComentarios %}
+					<li class="comentario">
+						<div class= "numero_comentario well">{{forloop.counter}}</div><div class="us_coment"><strong>{{comentario.nombre_usuario}}</strong></div> - <div class="hora_coment">{{comentario.fecha_publicacion}}</div>
+						<p>{{comentario.comentario}}</p>
+						
+					</li>
+				{% endfor %}	
+			</ul>
+		</div>		
+		{% endif %}
+		</aside>
+		<aside class="col-md-3 visible-md visible-lg  margin-t-b" style="float:right;width:30%">
+				{% if articulo.relevantes %}
+					<section id="ejemplos" class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Relevant</h3>
+						</div>
+						<div class="panel-body"> 
+							<table class="item-not-info">
+							{% for ejemplo in articulo.relevantes %}	
+								{% if forloop.last %}			
+										<tr>
+									{% else %}	
+										<tr class="bordeInferior">
+									{% endif %}	
+									 <td >		  
+											<a href="/Relevant/{{ejemplo.id}}">		
+												<div class="columna-list-foto">
+													
+													<img  class="img-thumbnaild"  data-src="holder.js/150x150" style="width: 80px; height: 80px;" src="{{MEDIA_ROOT}}/static/images/news/{{ejemplo.imagen}}">
+													
+													<span >{{ejemplo.titulo}}</span>
+												<!--<div class="well" >{{articulo.codigo}}</div>-->
+												</div>	
+											 </a>
+									  </td>	 
+								  </tr>
+											  
+							{% endfor %}
+							 </table>				
+						</div>
+					</section>
+				 {% endif %}
+				 
+				{% if articulo.ejemplos %}
+					<section id="ejemplos" class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Ultimos Trabajos</h3>
+						</div>
+						<div class="panel-body"> 
+							<table class="item-not-info">
+							{% for ejemplo in articulo.ejemplos %}	
+								{% if forloop.last %}			
+										<tr>
+									{% else %}	
+										<tr class="bordeInferior">
+									{% endif %}	
+									 <td >		  
+											<a href="/Example/{{ejemplo.id}}">		
+												<div class="columna-list-foto">
+													
+													<img  class="img-thumbnaild"  data-src="holder.js/150x150" style="width: 80px; height: 80px;" src="{{MEDIA_ROOT}}/static/images/galerias/{{ejemplo.portada}}">
+													
+													<span >{{ejemplo.titulo}}</span>
+												<!--<div class="well" >{{articulo.codigo}}</div>-->
+												</div>	
+											 </a>
+									  </td>	 
+								  </tr>
+											  
+							{% endfor %}
+							 </table>
+							 <a href="/Examples"><span>Show all works</span></a>				
+						</div>
+					</section>
+				 {% endif %}
+				 
+				 
+				 	
+				 {% if articulo.sitios %}
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Cooperation</h3>
+						</div>
+						<div class="panel-body">
+							{% for sitio in articulo.sitios %}
+								<a class="hdefault" href ="{{ sitio.url}}" ><div>{{ sitio.nombre }}</div> </a>
+							{% endfor %}	
+						</div>					  
+					</div>
+				{% endif %}	
+		</aside>
+{% endblock %}
+
+
+

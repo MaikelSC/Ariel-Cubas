@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block archivos_estaticos %}
+	<link rel="stylesheet" href="/static/css/css_articulo_categoria.css">
+{% endblock %}
+	
+	
+{% block noticias%}
+	<section id="noticiass" class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Articulos Sobre Informatica</h3>
+		</div>
+		<div class="panel-body panelArtInf"> 
+			{% for articulo in articulo_blog %}
+				{% if forloop.counter0|divisibleby:"2" %}
+				<div class="divInternoArt">
+				{% endif%}
+					<article >
+						{{articulo.imagen}}
+						{{articulo.galeria}}
+						<a href="{{urlManual}}/{{articulo.id}}"><img  alt="150x150" data-src="holder.js/150x150"  src="{{MEDIA_ROOT}}/static/images/{{urlImagen}}/{{articulo.imagen}}"></a>
+						<time>{{articulo.fecha_publicacion}}</time>
+						<a class="tituloArt" href="{{urlManual}}/{{articulo.id}}"><span>{{articulo.titulo}}</span></a>
+						
+						<div class="textoArt" >{{articulo.codigo}}</div>
+					</article>
+				{% if forloop.counter0|divisibleby:"2" == False %}
+				</div>
+					{% endif%}
+			{% endfor %}
+			{% if artCant != 1 %}
+				<div class="centrar">
+					<ul class="pagination centrar" style="text-align:center"> 
+						{% for i in artCant %}
+							<li><a href="{{i}}">{{i}}</a></li> 
+						{% endfor %}	
+					</ul>
+				</div>
+			{% endif %}	
+		</div>
+	</section>
+{% endblock %}
+
+

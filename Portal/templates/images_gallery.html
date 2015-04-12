@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block archivos_estaticos %}
+	 <link rel="stylesheet" href="/static/css/css_articulo.css">
+	 <script type='text/javascript' src='/static/js/imgs_galerias.js'></script>	
+	
+	
+{% endblock %}
+{% block todoAncho %}
+
+<!-- Modal --> 
+<div class="modal fade" id="model-visor" tabindex="-1" role="dialog" aria-labelledby="Imagenes" aria-hidden="true"> 
+	<div class="modal-dialog visor"> 
+		<div class="modal-content"> 
+				<div class="modal-header"> 
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> 
+						&times; 
+					</button> 
+					<h4 class="modal-title" id="myModalLabel"> 
+						Visor de Imagenes
+					</h4> 
+				</div>
+				<div class="modal-body"> 			
+					<section id="visor" class="jumbotron " >
+						<div id="myCarousel" class="carousel slide" data-ride="carousel"  > 
+							 <!-- Carousel items --> 
+							<div class="carousel-inner " > 
+								{% for carrucel in imagenes %}				
+									{% if forloop.first %}					
+										 <div class="item active ">									 
+												<img class="imgCarrucel img-responsive"  src="{{MEDIA_ROOT}}/static/images/{{carrucel.imagen}}" alt="asdf">
+												<!--<div class="carousel-caption">{{carrucel.nombre}}</div>-->
+												{% if imagen.pie_foto != None and imagen.pie_foto != '' %}
+													<div class="pie_foto">{{imagen.pie_foto}}</div>
+												{% endif %}
+											</div> 
+									{% else %}
+										<div class="item no-{{forloop0}}" > 
+												<img class=" img-responsive "  src="{{MEDIA_ROOT}}/static/images/{{carrucel.imagen}}" alt="asdf"> 
+												<!--<div class="carousel-caption">{{carrucel.nombre}}</div>-->
+												{% if imagen.pie_foto != None and imagen.pie_foto != '' %}
+													<div class="pie_foto">{{imagen.pie_foto}}</div>
+												{% endif %}
+										</div> 
+									{% endif %}
+								{% endfor %}
+							</div> 
+								   <!-- Carousel nav --> 
+							   <a class="carousel-control left " href="#myCarousel" data-slide="prev">&lsaquo;</a> 
+							   <a class="carousel-control right " href="#myCarousel" data-slide="next">&rsaquo;</a> 
+							 <!-- Carousel indicators --> 
+							<ul class="carousel-indicators" id="indicadores-visor"> 
+								    
+									{% for carrucel in imagenes %}
+										{% if forloop.first %}			
+											<!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+											<div data-target="#myCarousel" data-slide-to="0" class="active">
+												<img class="imgCarrucel img-thumbnail img-responsive"  src="{{MEDIA_ROOT}}/static/images/{{carrucel.imagen}}" alt="asdf">
+											</div>
+										{% else %}	
+											<!--<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>-->
+											<div  data-target="#myCarousel" data-slide-to="{{forloop.counter0}}">
+												<img class="imgCarrucel img-thumbnail img-responsive"  src="{{MEDIA_ROOT}}/static/images/{{carrucel.imagen}}" alt="asdf"> 
+											</div>
+										{% endif %}
+									{% endfor %}
+										
+							</ul> 
+							<!--
+							<ul class="carousel-indicators" id="indicadores-visor"> 
+								    
+									{% for carrucel in imagenes %}
+										{% if forloop.first %}	\
+											<li data-target="#myCarousel" data-slide-to="0" class="active">
+												<img class="imgCarrucel img-thumbnail img-responsive"  src="{{MEDIA_ROOT}}/static/images/{{carrucel.imagen}}" alt="asdf">
+											</li>
+										{% else %}\
+											<li  data-target="#myCarousel" data-slide-to="{{forloop.counter0}}">
+												<img class="imgCarrucel img-thumbnail img-responsive"  src="{{MEDIA_ROOT}}/static/images/{{carrucel.imagen}}" alt="asdf"> 
+											</li>
+										{% endif %}
+									{% endfor %}
+										
+							</ul> 
+							  -->
+						</div>			
+					</section>
+			
+				 </div>
+				 <div class="modal-footer"> 
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close 
+						</button> 
+						<!--<button type="button" class="btn btn-primary"> 
+							Submit changes 
+						</button> -->
+				</div>	
+		</div> 
+	</div>
+	<!-- /.modal-content --> 
+</div><!-- /.modal -->
+
+
+
+	<div class="container-fluid bg-body">
+		<div class="content-margin bg-content col-sm-11">
+			<div class="row temp">
+				<div class="col-xs-12">
+					<br>
+					 
+					<section id="galeriaInstituciones" class="panel panel-default">
+						 <div class="panel-heading">
+							<h3 class="panel-title">Galeria: {{galeria}}</h3>
+						</div>
+						
+						
+						<div class="panel-body" >asdfasdf
+							<div id="cont-list-img">
+								{% for imagen in imagenes %}
+									<div class="cont-img-galeria tooltip-test" data-toggle="tooltip" title="{{galeria.nombre}}" >
+										<a data-toggle="modal" data-target="#model-visor"><img class="{{forloop.counter0}} img-responsive" alt="150x150" data-src="holder.js/150x150" style="width: 150px; height: 130px;" src="{{MEDIA_ROOT}}/static/images/{{imagen.imagen}}"></a>
+										<div class="pie-foto-galeria">{{galeria.nombre}}</div>
+									</div>
+									
+								{% endfor %}
+							</div> 
+						</div>
+					</section>
+					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#model-visor"> 
+						Ver transicion de Imagenes 
+					</button> 	
+				</div>
+			</div>
+		</div>		
+	</div>	
+	
+{% endblock %}

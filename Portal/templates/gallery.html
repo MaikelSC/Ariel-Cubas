@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block todoAncho %}
+	<section class="container-fluid border-cont" >
+		<article class="margin-t-b col-xs-12">
+			<section id="galeriaInstituciones" class="panel panel-default">
+				 <div class="panel-heading">
+					<h3 class="panel-title">My Photos</h3>
+				</div>
+				<div class="panel-body">
+					<div >
+						{% for galeria in galerias %}
+							<div class="cont-img-galeria tooltip-test" data-toggle="tooltip" title="{{galeria.nombre}}" >
+								<a href="/Gallery/{{galeria.id}}"><img class="img-responsive img-thumbnail thumbs-style" alt="150x150" data-src="holder.js/150x150" src="{{MEDIA_ROOT}}/static/images/galerias/{{galeria.portada}}"></a>
+								<div class="pie-foto-galeria">{{galeria.nombre}}</div>
+							</div>
+						{% endfor %}
+					</div> 
+				</div>
+			</section>	
+		</article>	
+	</section>
+	<section class="container-fluid border-cont" >
+		<article class="margin-t-b col-xs-12">
+			<section id="galeriaInstituciones" class="panel panel-default">
+				 <div class="panel-heading">
+					<h3 class="panel-title">My Videos</h3>
+				</div>
+				<div class="panel-body">
+				{% for video in videos %}
+					<div  class="cont-img-galeria">
+						<a href=""  data-toggle="modal" data-target="#myModal">
+							<video class="thumbs-style img-thumbnail border-cont">
+								<source src="{{MEDIA_ROOT}}/static/videos/{{video.video.url}}">
+				  				<!-- <source src="movie.ogg" type="video/ogg"> -->
+								Sorry, your browser does not support this video...
+							</video>
+							<div class="pie-foto-video">{{video.pie_video}}</div>
+						</a>
+						
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">{{video.pie_video}}</h4>
+						      </div>
+						      <div class="modal-body">
+						        <video class="border-cont video-size" controls>
+								<source src="{{MEDIA_ROOT}}/static/videos/{{video.video.url}}">
+				  				<!-- <source src="movie.ogg" type="video/ogg"> -->
+								Sorry, your browser does not support this video...
+							</video>							
+						      </div>
+						      <div class="modal-footer" style="text-align:left" >
+						      	<p><strong>Author: </strong> {{video.autor}}</p>
+						      	<p><strong>Date: </strong> {{video.fecha}}</p>
+						        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						        <button type="button" class="btn btn-primary">Save changes</button> -->
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</div> 
+				{% endfor %}	
+				</div>
+			</section>	
+		</article>	
+	</section>
+	
+	<!-- <section class="container-fluid border-cont" >
+		<header class="margin-l">
+			<h1>My Videos:</h1>
+		</header>
+		<article class="margin-t-b col-xs-6">
+			<video controls class="video-size img-thumbnail border-cont">
+				<source src="/static/videos/1.mp4" type="video/mp4">
+  				<source src="movie.ogg" type="video/ogg">
+				Sorry, your browser does not support this video...
+			</video>	
+		</article>
+		<aside class="col-xs-6 border-v-list margin-t-b">
+			<p class="border-bt video-size"><strong >Videos List</strong></p>
+			<div>
+				<p>Item1</p>
+					<p>Item2</p>
+					<p>Item3</p>
+					<p>Item4</p>
+					<p>Item5</p>	
+			</div>
+		</aside>
+	</section> -->
+			
+		
+	
+{% endblock %}

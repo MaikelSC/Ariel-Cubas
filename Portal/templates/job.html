@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block jobs %}
+	<div class="container-fluid bg-body">
+		<div class="content-margin bg-content col-sm-11">
+			<div class="row temp">
+				<section id="noticiass" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Trabajos</h3>
+					</div>
+					
+					<div class="panel-body panelNoticias"> 
+						{% for trabajo in trabajos %}
+							<article class="col-sm-12" >
+								
+								<a href="/Gallery/{{trabajo.galeria_id}}"><img class="img-thumbnail" alt="150x150" data-src="holder.js/150x150" style="width: 150px; height: 130px;" src="{{MEDIA_ROOT}}/static/images/galerias/{{trabajo.portada}}"></a>
+								<Strong>{{trabajo.nombre}}</Strong>	
+												
+								Precio:<span>{{trabajo.precio}}</span>					
+								<div class="well" >{{trabajo.codigo}}</div>
+								<a href="/Gallery/Jobs/{{trabajo.id}}">Show Example Galleries</a>
+							</article>
+						{% endfor %}					
+					</div>
+				  </section>
+			</div>
+		</div>		
+	</div>
+	
+{% endblock %}

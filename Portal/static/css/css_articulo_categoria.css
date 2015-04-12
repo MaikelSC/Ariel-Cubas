@@ -1,0 +1,46 @@
+#izq-izq{
+	width:100%;
+}
+
+
+
+.panelArtInf{
+	padding-top:0;
+	
+	
+}
+
+.divInternoArt{
+	margin:5px;
+	height: 290px;
+	
+}
+
+.divInternoArt article{
+	float:left;	
+}
+
+.divInternoArt article a img{
+	width: 95%;
+	height: 150px;
+	display: block;
+	
+}
+
+.tituloArt{
+	color: #444444;
+	font-size: 17px;
+	display:block;
+}
+
+.textoArt{
+	margin-top:5px;
+	color: #7D7D7D;
+}
+
+article{
+	width:45%;
+	display: inline-block;
+	margin:2%;
+	
+}

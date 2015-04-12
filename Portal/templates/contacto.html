@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block archivos_estaticos %}
+	<link rel="stylesheet" href="/static/css/css_articulo.css">
+{% endblock %}
+{% block articulo %}
+	<aside class="cont-news">
+			<article class= "panel panel-defaulty well">
+				<header>
+					<h1>Contac me</h1>
+				</header>
+				<div class="img-thumbnail cont_img" >
+					<img   data-src="holder.js/150x150" alt="150x150" src="{{MEDIA_ROOT}}/static/images/articulosFijos/{{articulo.imagen}}">		
+					{% if articulo.pie_foto != None and articulo.pie_foto != '' %}
+						<div class="pie_foto">{{articulo.pie_foto}}</div>
+					{% endif %}	
+				</div>	
+				<div class="panel-body">					
+					<table >
+						<tr><td colspan= "2">{{articulo.codigo}}</td></tr>
+						<tr><td>Phone:</td><td>{{articulo.telefono}}</td></tr>
+						<tr><td>Fax:</td><td>{{articulo.fax}}</td></tr>
+						<tr><td>Email:</td><td>{{articulo.email}}</td></tr>						
+					</table>
+				</div>					
+				
+			</article>
+	</aside>
+	<aside class="col-md-3 visible-md visible-lg  margin-t-b" style="float:right;width:30%">
+			<br>				
+			<section id="ejemplos" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Ultimos Trabajos</h3>
+					</div>
+					<div class="panel-body"> 
+						<table class="item-not-info">
+						{% for ejemplo in articulo.ejemplos %}	
+							{% if forloop.last %}			
+									<tr>
+								{% else %}	
+									<tr class="bordeInferior">
+								{% endif %}	
+								 <td >		  
+										<a href="/Example/{{ejemplo.id}}">		
+											<div class="columna-list-foto">
+												
+												<img  class="img-thumbnaild"  data-src="holder.js/150x150" style="width: 80px; height: 80px;" src="{{MEDIA_ROOT}}/static/images/galerias/{{ejemplo.portada}}">
+												
+												<span >{{ejemplo.titulo}}</span>
+											<!--<div class="well" >{{articulo.codigo}}</div>-->
+											</div>	
+										 </a>
+								  </td>	 
+							  </tr>
+										  
+						{% endfor %}
+						 </table>
+						 <a href="/Examples"><span>Show all works</span></a>				
+					</div>
+				</section>
+				
+				</br>
+			 
+			 {% if articulo.sitios %}
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Cooperation</h3>
+						</div>
+						<div class="panel-body">
+							{% for sitio in articulo.sitios %}
+								<a class="hdefault" href ="{{ sitio.url}}" ><div>{{ sitio.nombre }}</div> </a>
+							{% endfor %}	
+						</div>					  
+					</div>
+				{% endif %}
+	</aside>
+{% endblock %}
+
+
+

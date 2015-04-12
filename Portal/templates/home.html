@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+# {%block title%}Welcome to Ariels Site: Professional Stylist{%endblock%}
+{% block carrucel%}
+
+	<div class="container-fluid border-cont margin-b-carousel-cont">
+			<div class="col-xs-12 margin-t-carousel" >
+				<section id="carrucel" class=""  >
+					<div id="myCarousel" class="carousel slide" data-ride="carousel"  > 
+						 <!-- Carousel items --> 
+						<div class="carousel-inner " > 
+							{% for relevante in relevantes %}				
+								{% if forloop.first %}					
+									 <div class="item active">
+										 <a href="/Relevant/{{relevante.id}}">
+											<img class="imgCarrucel img-responsive"  src="{{MEDIA_ROOT}}/static/images/news/{{relevante.imagen}}" alt="asdf">
+											<!--<div class="carousel-caption">{{carrucel.nombre}}</div>-->
+										 </a>	
+									</div> 
+								{% else %}
+									<div class="item" > 
+										 <a href="/Relevant/{{relevante.id}}">
+											<img class="imgCarrucel img-responsive"  src="{{MEDIA_ROOT}}/static/images/news/{{relevante.imagen}}" alt="asdf"> 
+											<!--<div class="carousel-caption">{{carrucel.nombre}}</div>-->
+										 </a>	
+									</div> 
+								{% endif %}
+							{% endfor %}
+						</div> 
+							   
+						   <a class="carousel-control left " href="#myCarousel" data-slide="prev">&lsaquo;</a> 
+						   <a class="carousel-control right " href="#myCarousel" data-slide="next">&rsaquo;</a> 
+						 <!-- Carousel indicators --> 
+						   
+					
+			
+					<ol class="carousel-indicators"  > 
+							{% for relevante in relevantes %}
+								{% if forloop.first %}			
+									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								{% else %}	
+									<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
+								{% endif %}
+							{% endfor %}		
+					</ol>
+				</div>	
+						
+				</section>
+				
+			
+				
+		</div>
+	</div>	
+{% endblock %}
+
+{% block noticias %}
+
+		<section class="container-fluid border-cont" >
+			<article class="border-rg margin-t-b col-md-9 col-xs-12">
+			{% for noticia in noticias %}			
+				<!-- {% if forloop.counter0|divisibleby:"2" %}
+				<div class="divInternoArt center">
+				{% endif%} -->
+				<article class="border-news margin-b-l col-md-5 col-xs-12">
+					<a href="/News/{{noticia.id}}"><img class="img-responsive img-thumbnail thumbs-style" alt="150x150" data-src="holder.js/150x150"  src="{{MEDIA_ROOT}}/static/images/news/{{noticia.imagen}}"></a>
+					<small><time class="border-bt"><em>{{noticia.fecha_publicacion}}</em></time></small>
+					<a class="tituloArt" href="/News/{{noticia.id}}"><strong>{{noticia.titulo}}</strong></a>
+					<p class="text-justify"><em>{{noticia.codigo}}...</em></p>
+					<div class="textoArt" >{{imagen.codigo}}</div>
+				</article>
+				<!-- {% if forloop.counter0|divisibleby:"2" == False %}
+				</div>
+				{% endif %} -->
+			{% endfor %}
+			{% if noticiasCant != 1 %}
+				<div class="col-xs-12 text-center">
+					<ul class="pagination centrar-pag"> 
+						{% for i in noticiasCant %}
+						<li class="centrar"><a href="{{i}}">{{i}}</a></li> 
+						{% endfor %}	
+					</ul>
+				</div>
+			{% endif %}	
+			</article>
+			<aside class="col-md-3 visible-md visible-lg  margin-t-b centrar">	
+				
+				<section id="ejemplos" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Ultimos Trabajos</h3>
+					</div>
+					<div class="panel-body"> 
+						<table class="item-not-info">
+						{% for ejemplo in ejemplos %}	
+							{% if forloop.last %}			
+									<tr>
+								{% else %}	
+									<tr class="bordeInferior">
+								{% endif %}	
+								 <td >		  
+										<a href="/Example/{{ejemplo.id}}">		
+											<div class="columna-list-foto">
+												
+												<img  class="img-thumbnaild"  data-src="holder.js/150x150" style="width: 80px; height: 80px;" src="{{MEDIA_ROOT}}/static/images/galerias/{{ejemplo.portada}}">
+												
+												<span >{{ejemplo.titulo}}</span>
+											<!--<div class="well" >{{articulo.codigo}}</div>-->
+											</div>	
+										 </a>
+								  </td>	 
+							  </tr>
+										  
+						{% endfor %}
+						 </table>
+						 <a href="/Examples"><span>Show all works</span></a>				
+					</div>
+				</section>
+							
+				<strong>Follow me...</strong>
+				<div class="divInternoArt"><img class="social-icons rotation border-cont" src="/static/images/facebook.png" class="img-responsive img-thumbnail" alt="My Facebook"></div>
+ 				<div><img class="social-icons rotation-1 border-cont" src="/static/images/twitter.png" class="img-responsive img-thumbnail" alt="My Twitter"></div>
+ 				<div><img class="social-icons rotation border-cont" src="/static/images/instagram.png" class="img-responsive img-thumbnail" alt="My Instagram"></div>				
+			</aside>
+								
+		</section>
+{%  endblock %}			

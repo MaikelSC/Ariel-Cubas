@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/static/css/main.css">
+	<link rel="stylesheet" href="/static/css/menu-style.css">	
+	<script src="/static/bootstrap/js/jquery-1.11.1.js"></script>
+	{% block archivos_estaticos %}{% endblock %}
+</head>
+<body>
+	<header class="">
+		<div class="navbar-fixed-top">
+			<div class="col-md-1 visible-lg visible-md">				
+			</div>	
+			<div class="bg-header-left col-md-1 visible-lg visible-md">				
+			</div>		
+			<div class="bg-header col-xs-12 col-md-10 container-fluid">
+				<div class="col-xs-4">
+					<h2 class="text-muted site-name border-bt visible-lg visible-md visible-sm">
+						Ariel Cubas						
+					</h2>
+					<small class="site-prof pull-right visible-lg visible-md">
+						Professional Stylist
+					</small>					
+				</div>
+				<nav class="menu-container-narrowed">
+					<div class="menu-icon-narrowed"></div>
+				</nav>
+				<nav class="menu-container-expanded">
+					<ul class="margin-zero menu-elements">
+						<a class="btn menu-links" href="/Home/"><li class="menu-buttons">Home</li></a>
+						<a class="btn menu-links" href="/Aboutme/"><li class="menu-buttons">About me</li></a>
+						<a class="btn menu-links" href="/Job/"><li class="menu-buttons">Job</li></a>
+						<a class="btn menu-links" href="/Examples/"><li class="menu-buttons">Examples</li></a>
+						<a class="btn menu-links" href="/Gallery/"><li class="menu-buttons">Gallery</li></a>
+						<a class="btn menu-links" href="/Blog/"><li class="menu-buttons">Blog</li></a>
+						<a class="btn menu-links" href="/Contact/"><li class="menu-buttons">Contact</li></a>
+					</ul>
+				</nav>
+			</div>
+			<div class="bg-header-right col-md-1 visible-lg visible-md">
+			</div>
+		</div>
+	</header>
+	<div class="left-scissor visible-sm visible-md visible-lg">
+		<img src="/static/images/black-scissor.png" alt="" class="img-scissor">
+	</div>
+	<div class="container-fluid bg-body">
+		<div class="content-margin bg-content col-sm-11 center">
+			{% block carrucel %}{% endblock %}		   				
+			{% block noticias %}{% endblock %}			
+			{% block aboutme %}{% endblock %}			
+			{% block articulo %}{% endblock %}
+			{% block todoAncho %}{% endblock %}			
+			{% block jobs %}{% endblock %}			
+			
+		</div>		
+	</div>
+	<div class="right-scissor visible-sm visible-md visible-lg">
+		<img src="/static/images/white-scissor.png" alt="" class="img-scissor">
+	</div>
+	<footer>
+		<div class="row">
+			<div class="border-footer col-xs-12"></div>
+			<div class="bg-footer-left col-md-1 visible-lg visible-md">
+			</div>
+			<div class="bg-footer col-sm-12 col-md-10 container footer-padding">
+				<div class="col-xs-9 pull-right visible-lg visible-md">
+					This is the <strong>Official Ariel's Web Site</strong> powered by <strong>B&M Freelance Solutions. </strong> Let us make you with style.
+				</div>
+				<div class="col-xs-8 pull-right border-t-b margin-t-b">
+					Links: 
+					<a href="/Home/"> Home </a>
+					|
+					<a href="/Aboutme/"> About me </a>
+					|
+					<a href="/Job/"> Job </a>
+					|
+					<a href="/Gallery/"> Gallery </a>
+					|
+					<a href="/Blog/"> Blog </a>
+					|
+					<a href="/Contact/"> Contact </a>
+					<a href=""><img class="media-links" src="/static/images/facebook.png" alt=""></a>
+					<a href=""><img class="media-links" src="/static/images/twitter.png" alt=""></a>
+					<a href=""><img class="media-links" src="/static/images/instagram.png" alt=""></a>	
+				</div>
+				<div class="col-xs-5 pull-right">
+					 Copyright 2015 &copy;. All right reserved.
+				</div>
+			</div>
+			<div class="bg-footer-right col-md-1 visible-lg visible-md">
+			</div>
+		</div>
+	</footer>
+	<!----------Scripts----------- -->
+	
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/js/menu-action.js"></script>
+</body>
+</html>
